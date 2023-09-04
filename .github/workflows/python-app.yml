@@ -42,7 +42,8 @@ jobs:
       if: "matrix.python-version != 'pypy-3.8'"
       run: |
         pip install -U mypy
-        stubtest full_outer_join.join
+        mypy full_outer_join --enable-incomplete-feature=Unpack
+        # stubtest full_outer_join.join
     - name: Build packages
       if: "matrix.python-version == '3.8'"
       run: |
