@@ -58,8 +58,12 @@ _left_batch = itemgetter(0)
 _right_batch = itemgetter(1)
 
 
-def _left_right_join(_batch_getter, left_iterable, right_iterable, key=lambda x: x):
-    for group_key, key_batches in full_outer_join(left_iterable, right_iterable, key=key):
+def _left_right_join(
+    _batch_getter, left_iterable, right_iterable, key=lambda x: x
+):
+    for group_key, key_batches in full_outer_join(
+        left_iterable, right_iterable, key=key
+    ):
         if not _batch_getter(key_batches):
             continue
         yield group_key, key_batches
@@ -77,7 +81,9 @@ def left_join(left_iterable, right_iterable, key=lambda x: x):
         >>> list(inner_join(left_rows, right_rows, key=lambda x: x["id"]))
         [(1, ([{'id': 1, 'val': 'foo'}], []))]
     """
-    for group_key, key_batches in _left_right_join(_left_batch, left_iterable, right_iterable, key=key):
+    for group_key, key_batches in _left_right_join(
+        _left_batch, left_iterable, right_iterable, key=key
+    ):
         yield group_key, key_batches
 
 
@@ -94,7 +100,9 @@ def right_join(left_iterable, right_iterable, key=lambda x: x):
         [(1, ([{'id': 1, 'val': 'foo'}], [{'id': 1, 'val': 'bar'}])), \
 (2, ([], [{'id': 2, 'val': 'baz'}]))]
     """
-    for group_key, key_batches in _left_right_join(_right_batch, left_iterable, right_iterable, key=key):
+    for group_key, key_batches in _left_right_join(
+        _right_batch, left_iterable, right_iterable, key=key
+    ):
         yield group_key, key_batches
 
 
@@ -105,5 +113,9 @@ def cross_join(join_output, null=None):
     The value of null, default None, is used as a placeholder for any iterable
     missing values in that key batch."""
     for group_key, key_batches in join_output:
-        yield from ((group_key, row) for row in product(*(batch if batch else [null] for batch in key_batches)))
-
+        yield from (
+            (group_key, row)
+            for row in product(
+                *(batch if batch else [null] for batch in key_batches)
+            )
+        )
