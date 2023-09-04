@@ -1,6 +1,12 @@
 from unittest import TestCase
 
-from full_outer_join import full_outer_join, inner_join, left_join, right_join, cross_join
+from full_outer_join import (
+    full_outer_join,
+    inner_join,
+    left_join,
+    right_join,
+    cross_join,
+)
 
 
 class FullOuterJoinTests(TestCase):
@@ -26,7 +32,7 @@ class FullOuterJoinTests(TestCase):
         expected = [
             (1, ([1], [1], [1])),
             (2, ([2], [2], [])),
-            (3, ([], [], [3]))
+            (3, ([], [], [3])),
         ]
         self.assertEqual(result, expected)
 
@@ -84,14 +90,10 @@ class FullOuterJoinTests(TestCase):
         obj2 = 'yyy'
         obj3 = 'zzz'
 
-        join_output = [
-            (1, ([], [obj1], [obj2, obj3]))
-        ]
+        join_output = [(1, ([], [obj1], [obj2, obj3]))]
         result = list(cross_join(join_output, null=null))
         expected = [
             (1, (null, obj1, obj2)),
             (1, (null, obj1, obj3)),
         ]
         self.assertEqual(result, expected)
-
-

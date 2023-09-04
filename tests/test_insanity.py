@@ -18,7 +18,9 @@ class InsanityTests(TestCase):
             {"dog_id": 3, "dog_name": "Izzy", "dog_color": "blue"},
         ]
 
-        # CREATE TABLE dog_visits (dog_visit_id INT, dog_id INT, dog_weight INT);
+        # CREATE TABLE dog_visits (
+        #   dog_visit_id INT, dog_id INT, dog_weight INT
+        # );
         dog_visits = [
             # mean weight of 10
             {"dog_visit_id": 1, "dog_id": 1, "dog_weight": 5},
