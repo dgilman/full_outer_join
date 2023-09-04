@@ -1,9 +1,11 @@
-from typing import Callable, Iterable, Iterator, TypeVar, TypeAlias
+from typing import Callable, Iterable, Iterator, TypeVar
 
-try:
-    from typing import Unpack
-except ImportError:
-    from typing_extensions import Unpack
+import sys
+
+if sys.version_info >= (3, 11):
+    from typing import Unpack, TypeAlias
+else:
+    from typing_extensions import Unpack, TypeAlias
 
 _T = TypeVar('_T')
 _U = TypeVar('_U')
