@@ -1,4 +1,9 @@
-from typing import Callable, Iterable, Iterator, TypeVar, Unpack, TypeAlias
+from typing import Callable, Iterable, Iterator, TypeVar, TypeAlias
+
+try:
+    from typing import Unpack
+except ImportError:
+    from typing_extensions import Unpack
 
 _T = TypeVar('_T')
 _U = TypeVar('_U')
