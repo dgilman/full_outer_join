@@ -1,4 +1,4 @@
-full_outer_join
+full\_outer\_join
 ===============
 
 Lazy iterator implementations of a full outer join, inner join, 
@@ -57,7 +57,6 @@ Functions
 | `cross_join(join_output, null=None)`                         | Do the cross (Cartesian) join on the output of `full_outer_join` or `inner_join`, yielding `(key, (iter1_row, ...))` for each row. This is implemented for completeness and is probably not useful. Iterables lacking any rows for `key` are replaced with `null` in the output. |
 
 
-
 Why?
 ----
 
@@ -69,3 +68,13 @@ Why?
 3. You're insane. Your brain is irreparably broken by the relational model. 
 
 
+More examples
+-------------
+
+See test_insanity.py for a silly example of a SQL query hand-compiled into iterators.
+
+
+Thanks
+------
+This was originally a PR to the [more_itertools](https://github.com/more-itertools/more-itertools) project
+who gave some excellent feedback on the design but ultimately did not want to merge it in.
